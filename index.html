@@ -13,18 +13,15 @@ body {
     text-align: center;
 }
 
-/* Container */
 .container {
     margin-top: 80px;
 }
 
-/* Title */
 h1 {
     color: #ff2e2e;
     text-shadow: 0 0 15px red;
 }
 
-/* Button */
 button {
     padding: 14px 28px;
     margin: 10px;
@@ -35,7 +32,6 @@ button {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 0 20px rgba(255,0,0,0.3);
-    transition: 0.2s;
 }
 
 button:hover {
@@ -43,7 +39,6 @@ button:hover {
     box-shadow: 0 0 30px rgba(255,0,0,0.6);
 }
 
-/* Card Result */
 .result-card {
     margin: 30px auto;
     padding: 20px;
@@ -54,7 +49,6 @@ button:hover {
     box-shadow: 0 5px 25px rgba(255,0,0,0.3);
 }
 
-/* Text */
 .premium {
     color: gold;
     text-shadow: 0 0 20px gold;
@@ -86,15 +80,11 @@ button:hover {
 </div>
 
 <script>
-// PASSWORD (encoded)
-let autoPass = "WDkhazlMTF83NyNINExsMCRIdWJAVWx0cmFTZWN1cmUyMDI2";
+// PASSWORD LANGSUNG (NO ENCODE BIAR AMAN)
+let PASSWORD = "X9!kL_77#H4ll0$Hub@UltraSecure2026";
 
 // LOAD SAVE
 let unlocked = localStorage.getItem("allKeyUnlocked");
-
-function checkAuto(input) {
-    return btoa(input) === autoPass;
-}
 
 // GACHA
 function roll() {
@@ -121,11 +111,11 @@ function roll() {
     }, 1500);
 }
 
-// AUTO PREMIUM BUTTON
+// AUTO PREMIUM FIX
 function autoPremium() {
     let pass = prompt("Enter Password:");
 
-    if (checkAuto(pass)) {
+    if (pass === PASSWORD) {
         document.getElementById("result").innerHTML = "💎 AUTO PREMIUM UNLOCKED";
         document.getElementById("result").className = "premium";
 
@@ -137,7 +127,7 @@ function autoPremium() {
     }
 }
 
-// CLAIM REDIRECT
+// CLAIM
 function claimReward() {
     window.location.href = "https://lootdest.org/s?a0leYAg7";
 }
