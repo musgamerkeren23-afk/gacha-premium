@@ -8,43 +8,62 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: #050505;
+    background: linear-gradient(180deg, #000000, #120000);
     color: white;
     text-align: center;
 }
 
 /* Container */
 .container {
-    margin-top: 100px;
+    margin-top: 80px;
+}
+
+/* Title */
+h1 {
+    color: #ff2e2e;
+    text-shadow: 0 0 15px red;
 }
 
 /* Button */
 button {
-    padding: 15px 30px;
+    padding: 14px 28px;
+    margin: 10px;
     border-radius: 12px;
     border: none;
     background: linear-gradient(45deg, #ff0000, #990000);
     color: white;
-    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(255,0,0,0.4);
+    box-shadow: 0 0 20px rgba(255,0,0,0.3);
+    transition: 0.2s;
 }
 
-/* Result */
-.result {
-    margin-top: 30px;
-    font-size: 22px;
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255,0,0,0.6);
 }
 
-/* Premium effect */
+/* Card Result */
+.result-card {
+    margin: 30px auto;
+    padding: 20px;
+    width: 85%;
+    max-width: 400px;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #0a0a0a, #120000);
+    box-shadow: 0 5px 25px rgba(255,0,0,0.3);
+}
+
+/* Text */
 .premium {
     color: gold;
     text-shadow: 0 0 20px gold;
+    font-size: 22px;
 }
 
-/* Zonk */
 .zonk {
     color: red;
+    font-size: 20px;
 }
 </style>
 </head>
@@ -55,8 +74,11 @@ button {
     <h1>🩸 Gacha System 🩸</h1>
 
     <button onclick="roll()">ROLL</button>
+    <button onclick="autoPremium()">AUTO PREMIUM</button>
 
-    <div class="result" id="result"></div>
+    <div class="result-card">
+        <div id="result">Press ROLL</div>
+    </div>
 
     <button id="claimBtn" style="display:none;" onclick="claimReward()">
         Claim Reward
@@ -64,44 +86,66 @@ button {
 </div>
 
 <script>
+// PASSWORD (encoded)
+let autoPass = "WDkhazBMeF83NyNINExsMCRIdWJAVWx0cmFTZWN1cmUyMDI2";
+
 // LOAD SAVE
 let unlocked = localStorage.getItem("allKeyUnlocked");
 
-// GACHA FUNCTION
+function checkAuto(input) {
+    return btoa(input) === autoPass;
+}
+
+// GACHA
 function roll() {
-    let resultText = document.getElementById("result");
+    let result = document.getElementById("result");
     let claimBtn = document.getElementById("claimBtn");
 
     claimBtn.style.display = "none";
-    resultText.innerHTML = "Rolling...";
+    result.innerHTML = "Rolling...";
 
     setTimeout(() => {
         let chance = Math.random();
 
         if (chance < 0.001) {
-            // PREMIUM
-            resultText.innerHTML = "💎 PREMIUM!!! ALL KEY UNLOCKED";
-            resultText.className = "result premium";
+            result.innerHTML = "💎 PREMIUM - ALL KEY UNLOCKED";
+            result.className = "premium";
 
             localStorage.setItem("allKeyUnlocked", "true");
 
             claimBtn.style.display = "inline-block";
         } else {
-            // ZONK
-            resultText.innerHTML = "💀 ZONK...";
-            resultText.className = "result zonk";
+            result.innerHTML = "💀 ZONK...";
+            result.className = "zonk";
         }
     }, 1500);
 }
 
-// CLAIM REWARD → REDIRECT
+// AUTO PREMIUM BUTTON
+function autoPremium() {
+    let pass = prompt("Enter Password:");
+
+    if (checkAuto(pass)) {
+        document.getElementById("result").innerHTML = "💎 AUTO PREMIUM UNLOCKED";
+        document.getElementById("result").className = "premium";
+
+        localStorage.setItem("allKeyUnlocked", "true");
+
+        document.getElementById("claimBtn").style.display = "inline-block";
+    } else {
+        alert("Wrong Password!");
+    }
+}
+
+// CLAIM REDIRECT
 function claimReward() {
     window.location.href = "https://lootdest.org/s?a0leYAg7";
 }
 
-// AUTO CHECK (kalau udah pernah dapet premium)
+// AUTO LOAD
 if (unlocked === "true") {
     document.getElementById("result").innerHTML = "💎 ALREADY UNLOCKED";
+    document.getElementById("result").className = "premium";
     document.getElementById("claimBtn").style.display = "inline-block";
 }
 </script>
