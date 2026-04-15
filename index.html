@@ -13,15 +13,18 @@ body {
     text-align: center;
 }
 
+/* Container */
 .container {
     margin-top: 80px;
 }
 
+/* Title */
 h1 {
     color: #ff2e2e;
     text-shadow: 0 0 15px red;
 }
 
+/* Buttons */
 button {
     padding: 14px 28px;
     margin: 10px;
@@ -32,6 +35,7 @@ button {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 0 20px rgba(255,0,0,0.3);
+    transition: 0.2s;
 }
 
 button:hover {
@@ -39,6 +43,7 @@ button:hover {
     box-shadow: 0 0 30px rgba(255,0,0,0.6);
 }
 
+/* Card */
 .result-card {
     margin: 30px auto;
     padding: 20px;
@@ -49,6 +54,7 @@ button:hover {
     box-shadow: 0 5px 25px rgba(255,0,0,0.3);
 }
 
+/* Result text */
 .premium {
     color: gold;
     text-shadow: 0 0 20px gold;
@@ -67,20 +73,21 @@ button:hover {
 <div class="container">
     <h1>🩸 Gacha System 🩸</h1>
 
-    <button onclick="roll()">ROLL</button>
-    <button onclick="autoPremium()">AUTO PREMIUM</button>
+    <button onclick="roll()">🎰 ROLL</button>
+    <button onclick="autoPremium()">💎 AUTO PREMIUM</button>
 
     <div class="result-card">
         <div id="result">Press ROLL</div>
     </div>
 
     <button id="claimBtn" style="display:none;" onclick="claimReward()">
-        Claim Reward
+        🔗 Claim Reward
     </button>
 </div>
 
 <script>
-// PASSWORD LANGSUNG (NO ENCODE BIAR AMAN)
+
+// PASSWORD FIX
 let PASSWORD = "X9!kL_77#H4ll0$Hub@UltraSecure2026";
 
 // LOAD SAVE
@@ -111,7 +118,7 @@ function roll() {
     }, 1500);
 }
 
-// AUTO PREMIUM FIX
+// AUTO PREMIUM
 function autoPremium() {
     let pass = prompt("Enter Password:");
 
@@ -127,9 +134,9 @@ function autoPremium() {
     }
 }
 
-// CLAIM
+// CLAIM (UPDATED LINK)
 function claimReward() {
-    window.location.href = "https://lootdest.org/s?a0leYAg7";
+    window.location.href = "https://link-center.net/5081399/AZS3r8HS2uAh";
 }
 
 // AUTO LOAD
@@ -138,6 +145,7 @@ if (unlocked === "true") {
     document.getElementById("result").className = "premium";
     document.getElementById("claimBtn").style.display = "inline-block";
 }
+
 </script>
 
 </body>
